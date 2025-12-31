@@ -159,8 +159,10 @@ Some agents trigger automatically in specific contexts:
 Each agent includes:
 - **name**: Unique identifier
 - **description**: When to use the agent with examples
-- **color**: Visual identification
+- **model**: AI model selection (opus, sonnet, haiku, or inherit)
+- **color**: Visual identification (red, blue, green, yellow, purple, orange, pink, cyan)
 - **tools**: Specific tools the agent can access
+- **permissionMode**: Permission handling (default, acceptEdits, bypassPermissions, plan, ignore)
 - **System prompt**: Detailed expertise and instructions
 
 ### Adding New Agents
@@ -195,8 +197,10 @@ Use this checklist when creating or modifying agents for your specific needs:
 - [ ] **YAML Frontmatter**
   - [ ] `name`: Unique agent identifier (kebab-case)
   - [ ] `description`: When to use + 3-4 detailed examples with context/commentary
-  - [ ] `color`: Visual identification (e.g., blue, green, purple, indigo)
-  - [ ] `tools`: Specific tools the agent can access (Write, Read, MultiEdit, Bash, etc.)
+  - [ ] `model`: AI model (opus for complex reasoning, sonnet for balanced, haiku for fast/simple)
+  - [ ] `color`: Visual identification (red, blue, green, yellow, purple, orange, pink, cyan)
+  - [ ] `tools`: Specific tools the agent can access (Write, Read, Edit, Bash, Grep, Glob, etc.)
+  - [ ] `permissionMode`: Permission handling (default, acceptEdits, bypassPermissions, plan, ignore)
 
 #### 📝 System Prompt Requirements (500+ words)
 - [ ] **Agent Identity**: Clear role definition and expertise area
@@ -254,8 +258,10 @@ Use this checklist when creating or modifying agents for your specific needs:
 ---
 name: your-agent-name
 description: Use this agent when [scenario]. This agent specializes in [expertise]. Examples:\n\n<example>\nContext: [situation]\nuser: "[user request]"\nassistant: "[response approach]"\n<commentary>\n[why this example matters]\n</commentary>\n</example>\n\n[3 more examples...]
-color: agent-color
-tools: Tool1, Tool2, Tool3
+model: sonnet
+color: blue
+tools: Write, Read, Edit, Bash, Grep, Glob
+permissionMode: default
 ---
 
 You are a [role] who [primary function]. Your expertise spans [domains]. You understand that in 6-day sprints, [sprint constraint], so you [approach].
