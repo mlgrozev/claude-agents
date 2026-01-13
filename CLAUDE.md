@@ -25,14 +25,17 @@
 
 ## Repository Overview
 
-This repository contains **38 specialized AI agents** organized by department (engineering, design, marketing, product, operations, testing, project management). Each agent is an expert in their domain, designed to work within a fast-paced studio environment that ships products in 6-day sprint cycles.
+This repository is the **redispute** project workspace, which includes a collection of **38 specialized AI agents** stored in the `.claude/` subdirectory. Each agent is an expert in their domain, designed to work within a fast-paced studio environment that ships products in 6-day sprint cycles.
 
 ### Key Facts
+- **Project**: redispute (PreventFlow/Disputifier)
+- **Repository Path**: `/Users/mladen.grozev/Code/redispute/`
 - **Total Agents**: 38 (across 8 departments)
+- **Agent Location**: `.claude/agents/` subdirectory within the repository
 - **File Format**: Markdown with YAML frontmatter
 - **Primary Model**: Sonnet (84% of agents)
 - **No Build Process**: Pure markdown repository
-- **Deployment**: Agents are copied to `~/.claude/agents/` directory
+- **Deployment**: Agents are already in place and loaded automatically by Claude Code
 
 ### Core Philosophy
 - Ship fast, iterate based on real user feedback
@@ -41,20 +44,44 @@ This repository contains **38 specialized AI agents** organized by department (e
 - Practical solutions over perfect code
 - "Smooth is fast, fast is smooth"
 
+### How Agents Are Used in This Repository
+
+**Automatic Loading**: Agents stored in `.claude/agents/` are automatically loaded by Claude Code when working in this repository. No manual installation or copying required.
+
+**Usage Pattern**:
+1. **Working Directory**: Ensure you're in `/Users/mladen.grozev/Code/redispute/`
+2. **Agent Access**: All 38 agents are immediately available for use
+3. **Triggering**: Agents activate automatically based on:
+   - Your task description matching their examples
+   - Context-based triggers (code changes → test-writer-fixer)
+   - Explicit requests mentioning agent names
+4. **Multi-Agent Workflows**: Agents can collaborate and call each other via the Task tool
+
+**Skills**: Custom skills in `.claude/skills/` extend functionality:
+- `prd`: Generate Product Requirements Documents
+- `prd-to-jira`: Convert PRDs to Jira user stories
+
+**Knowledge Base**: The `knowledge/` directory contains project-specific research and strategy documents for PreventFlow and Disputifier.
+
 ---
 
 ## Repository Structure
 
 ```
-/home/user/claude-agents/
-├── bonus/                      # 2 agents: studio-coach, joker
-├── design/                     # 5 agents: UI/UX, branding, visual design
-├── engineering/                # 7 agents: frontend, backend, mobile, AI, DevOps
-├── marketing/                  # 7 agents: social media, growth, content
-├── product/                    # 3 agents: feedback, trends, prioritization
-├── project-management/         # 3 agents: coordination, shipping, experiments
-├── studio-operations/          # 5 agents: analytics, finance, support, legal
-├── testing/                    # 5 agents: performance, API testing, benchmarking
+/Users/mladen.grozev/Code/redispute/
+├── .claude/
+│   ├── agents/                 # All 38 specialized agents
+│   │   ├── bonus/              # 2 agents: studio-coach, joker
+│   │   ├── design/             # 5 agents: UI/UX, branding, visual design
+│   │   ├── engineering/        # 7 agents: frontend, backend, mobile, AI, DevOps
+│   │   ├── marketing/          # 7 agents: social media, growth, content
+│   │   ├── product/            # 3 agents: feedback, trends, prioritization
+│   │   ├── project-management/ # 3 agents: coordination, shipping, experiments
+│   │   ├── studio-operations/  # 5 agents: analytics, finance, support, legal
+│   │   └── testing/            # 5 agents: performance, API testing, benchmarking
+│   └── skills/                 # Custom skills (prd, prd-to-jira)
+├── knowledge/                  # Project knowledge base
+│   └── init-research/          # Initial research docs (PreventFlow, Disputifier)
 ├── README.md                   # User-facing documentation
 ├── .gitignore                  # Standard git exclusions
 └── CLAUDE.md                   # This file - AI assistant guide
@@ -71,7 +98,7 @@ This repository contains **38 specialized AI agents** organized by department (e
 | Testing | 5 | Performance, quality, benchmarking |
 | Product | 3 | Prioritization, feedback, trends |
 | Project Management | 3 | Coordination, shipping, experiments |
-| Bonus | 2 | Coaching, humor |
+| Bonus | 2 | Coaching, humor (studio-coach, joker) |
 
 ---
 
@@ -549,15 +576,15 @@ Ask these questions:
 
 ### Step 2: Choose Department
 
-Place the agent in the appropriate directory:
-- `engineering/` - Implementation, architecture, deployment
-- `design/` - UI/UX, branding, visual work
-- `marketing/` - Growth, content, social media
-- `product/` - Prioritization, research, feedback
-- `project-management/` - Coordination, shipping
-- `studio-operations/` - Analytics, finance, support, legal
-- `testing/` - Quality, performance, benchmarking
-- `bonus/` - Special purpose agents
+Place the agent in the appropriate directory within `.claude/agents/`:
+- `.claude/agents/engineering/` - Implementation, architecture, deployment
+- `.claude/agents/design/` - UI/UX, branding, visual work
+- `.claude/agents/marketing/` - Growth, content, social media
+- `.claude/agents/product/` - Prioritization, research, feedback
+- `.claude/agents/project-management/` - Coordination, shipping
+- `.claude/agents/studio-operations/` - Analytics, finance, support, legal
+- `.claude/agents/testing/` - Quality, performance, benchmarking
+- `.claude/agents/bonus/` - Special purpose agents (coaching, humor)
 
 ### Step 3: Define YAML Frontmatter
 
@@ -623,7 +650,7 @@ Before committing:
 
 ```bash
 # Add the new agent file
-git add department/your-agent-name.md
+git add .claude/agents/department/your-agent-name.md
 
 # Commit with clear message
 git commit -m "feat: Add [agent-name] agent for [purpose]"
@@ -975,9 +1002,12 @@ If any are missing, the agent isn't properly aligned with studio philosophy.
 ## Quick Reference
 
 ### File Locations
-- **Agents**: `/home/user/claude-agents/{department}/{agent-name}.md`
-- **README**: `/home/user/claude-agents/README.md`
-- **This Guide**: `/home/user/claude-agents/CLAUDE.md`
+- **Repository Root**: `/Users/mladen.grozev/Code/redispute/`
+- **Agents**: `/Users/mladen.grozev/Code/redispute/.claude/agents/{department}/{agent-name}.md`
+- **Skills**: `/Users/mladen.grozev/Code/redispute/.claude/skills/`
+- **Knowledge**: `/Users/mladen.grozev/Code/redispute/knowledge/`
+- **README**: `/Users/mladen.grozev/Code/redispute/README.md`
+- **This Guide**: `/Users/mladen.grozev/Code/redispute/CLAUDE.md`
 
 ### Agent Counts by Department
 ```
@@ -1031,19 +1061,19 @@ permissionMode: plan
 
 ```bash
 # Find all agents
-find . -name "*.md" -not -name "README.md" -not -name "CLAUDE.md"
+find .claude/agents -name "*.md"
 
 # Search agent content
-grep -r "pattern" engineering/ design/ marketing/
+grep -r "pattern" .claude/agents/engineering/ .claude/agents/design/ .claude/agents/marketing/
 
 # Count agents by department
-ls -1 engineering/ | wc -l
+ls -1 .claude/agents/engineering/ | wc -l
 
 # Validate YAML (requires yq)
-yq eval '.' engineering/rapid-prototyper.md
+yq eval '.' .claude/agents/engineering/rapid-prototyper.md
 
-# Copy agents to Claude directory
-cp -r * ~/.claude/agents/
+# Agents are already in place - no copying needed
+# They load automatically from .claude/agents/ directory
 ```
 
 ---
@@ -1070,7 +1100,8 @@ cp -r * ~/.claude/agents/
 2. Verify agent name is unique
 3. Ensure description clearly explains use cases
 4. Add more detailed examples
-5. Check that agent is in `~/.claude/agents/` directory
+5. Verify agent is in `.claude/agents/{department}/` directory
+6. Restart Claude Code to reload agent definitions
 
 ### Tool Access Issues
 
@@ -1099,22 +1130,42 @@ cp -r * ~/.claude/agents/
 
 ### In This Repository
 - **README.md**: User-facing documentation with installation, agent list, customization checklist
-- **Agent Files**: 38 example agents showing best practices
+- **Agent Files**: 38 specialized agents in `.claude/agents/` directories
+- **Skills**: Custom skills in `.claude/skills/` (prd, prd-to-jira)
+- **Knowledge Base**: Project research and strategy in `knowledge/init-research/`
+  - PreventFlow MVP planning and Cloudflare Workers implementation
+  - Disputifier market research and disruption strategy
+  - Shopify payment protection strategy documents
 - **.gitignore**: Standard exclusions for Claude Code projects
+
+### Project-Specific Resources
+- **PreventFlow**: Shopify payment protection and dispute prevention system
+- **Disputifier**: Market disruptor analysis and competitive strategy
+- **Tech Stack**: Cloudflare Workers, Shopify API integration planned
 
 ### External Documentation
 - [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
 - [Claude Code Sub-Agents](https://docs.anthropic.com/en/docs/claude-code/sub-agents)
 - [Anthropic API Docs](https://docs.anthropic.com/)
 
-### Community
+### Contributing
 - GitHub Issues: Report problems or suggest improvements
 - Pull Requests: Contribute new agents or fixes
-- Discussions: Share patterns and learnings
+- Branch Pattern: `claude/{descriptive-name}-{random-id}`
 
 ---
 
 ## Changelog
+
+### 2026-01-13
+- **Updated repository context**: Changed from generic template to redispute project workspace
+- **Fixed agent locations**: Updated all paths from `/home/user/claude-agents/` to `/Users/mladen.grozev/Code/redispute/`
+- **Clarified agent deployment**: All 38 agents now in `.claude/agents/` subdirectory (including bonus agents), loaded automatically
+- **Added usage instructions**: How agents work in this specific repository setup
+- **Updated file structure**: Reflected actual repository layout with `.claude/agents/` (including bonus), `.claude/skills/`, and `knowledge/` directories
+- **Added project context**: Documented PreventFlow and Disputifier project information
+- **Updated commands**: Changed all example commands to use correct paths
+- **Consolidated bonus agents**: Moved bonus agents to `.claude/agents/bonus/` with all other agents
 
 ### 2026-01-12
 - Initial creation of CLAUDE.md
@@ -1133,4 +1184,4 @@ cp -r * ~/.claude/agents/
 
 ---
 
-*This document is maintained to help AI assistants understand and work effectively with the Contains Studio AI Agents repository. Last updated: 2026-01-12*
+*This document is maintained to help AI assistants understand and work effectively with the redispute project workspace. Last updated: 2026-01-13*

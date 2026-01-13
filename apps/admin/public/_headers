@@ -1,0 +1,10 @@
+# Cloudflare Pages headers
+
+/*
+  X-Frame-Options: ALLOWALL
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Allow Shopify embedding
+/
+  Content-Security-Policy: frame-ancestors https://*.myshopify.com https://admin.shopify.com

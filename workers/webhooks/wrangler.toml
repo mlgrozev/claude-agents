@@ -1,0 +1,39 @@
+name = "redispute-webhooks"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[env.dev]
+name = "redispute-webhooks-dev"
+
+[env.production]
+name = "redispute-webhooks"
+
+# D1 Database bindings
+[[d1_databases]]
+binding = "DB"
+database_name = "redispute-dev"
+database_id = "8597f5f4-029f-430f-9049-8a7c6a509477"
+
+# KV namespace bindings
+[[kv_namespaces]]
+binding = "WEBHOOK_LOG"
+id = ""
+
+# Durable Objects (for webhook queue)
+[[durable_objects.bindings]]
+name = "WEBHOOK_QUEUE"
+class_name = "WebhookQueue"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["WebhookQueue"]
+
+# Environment variables
+[vars]
+ENVIRONMENT = "development"
+
+# Secrets (use: wrangler secret put <NAME>)
+# - SHOPIFY_WEBHOOK_SECRET
+# - STRIPE_WEBHOOK_SECRET
+# - PAYPAL_WEBHOOK_SECRET

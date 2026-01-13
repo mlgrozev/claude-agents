@@ -1,0 +1,16 @@
+{
+  "name": "@redispute/database",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Database schemas and migrations for Redispute (Cloudflare D1)",
+  "main": "schema.sql",
+  "scripts": {
+    "db:create": "wrangler d1 create redispute-dev",
+    "db:push": "wrangler d1 execute redispute-dev --file=schema.sql",
+    "db:migrate": "wrangler d1 migrations apply redispute-dev",
+    "db:seed": "wrangler d1 execute redispute-dev --file=seed.sql"
+  },
+  "devDependencies": {
+    "wrangler": "^3.22.1"
+  }
+}

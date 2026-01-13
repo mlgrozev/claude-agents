@@ -1,0 +1,42 @@
+name = "redispute-api"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[env.dev]
+name = "redispute-api-dev"
+
+[env.production]
+name = "redispute-api"
+
+# D1 Database bindings
+[[d1_databases]]
+binding = "DB"
+database_name = "redispute-dev"
+database_id = "8597f5f4-029f-430f-9049-8a7c6a509477"
+
+[[d1_databases.migrations]]
+name = "migrations"
+migrations_dir = "../../packages/database/migrations"
+
+# KV namespace bindings
+[[kv_namespaces]]
+binding = "SESSIONS"
+id = "258d57d01ffd4c46a89fc2a2dd58087b"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "c2a89c52c48244d2bf4d0193d6490ba4"
+
+# Environment variables (set via wrangler secret put)
+[vars]
+ENVIRONMENT = "development"
+
+# Secrets (use: wrangler secret put <NAME>)
+# - SHOPIFY_CLIENT_ID
+# - SHOPIFY_CLIENT_SECRET
+# - STRIPE_SECRET_KEY
+# - STRIPE_WEBHOOK_SECRET
+# - PAYPAL_CLIENT_ID
+# - PAYPAL_CLIENT_SECRET
+# - OPENAI_API_KEY

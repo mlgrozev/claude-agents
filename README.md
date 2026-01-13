@@ -1,304 +1,240 @@
-# Contains Studio AI Agents
+# Redispute (PreventFlow MVP)
 
-A comprehensive collection of specialized AI agents designed to accelerate and enhance every aspect of rapid development. Each agent is an expert in their domain, ready to be invoked when their expertise is needed.
+**Payment Hold Prevention & Chargeback Management Platform for Shopify**
 
-## 📥 Installation
+Redispute helps Shopify merchants stay below the critical 0.5% dispute rate threshold to avoid payment holds, while providing AI-powered dispute resolution tools.
 
-1. **Download this repository:**
-   ```bash
-   git clone https://github.com/contains-studio/agents.git
-   ```
+## 🎯 What We're Building
 
-2. **Copy to your Claude Code agents directory:**
-   ```bash
-   cp -r agents/* ~/.claude/agents/
-   ```
-   
-   Or manually copy all the agent files to your `~/.claude/agents/` directory.
+A prevention-first chargeback management platform that:
+1. **Prevents payment holds** by keeping dispute rates below 0.5%
+2. **Prevents chargebacks** through automated customer intervention (40-60% reduction)
+3. **Wins disputes** with AI-generated evidence (80%+ win rate)
+4. **Unifies multi-processor management** (Shopify, Stripe, PayPal, Klarna)
 
-3. **Restart Claude Code** to load the new agents.
+## 🔥 Unique Differentiators
 
-## 🚀 Quick Start
+- **Klarna Email Parser** - First platform with automated Klarna dispute management
+- **Payment Hold Prevention** - Real-time monitoring and alerts
+- **Customer Dispute Portal** - Resolve issues before chargebacks are filed
+- **AI Evidence Generation** - GPT-4 powered, <30 seconds per dispute
+- **Multi-Processor Dashboard** - Unified view across all payment processors
 
-Agents are automatically available in Claude Code. Simply describe your task and the appropriate agent will be triggered. You can also explicitly request an agent by mentioning their name.
+## 📊 Market Opportunity
 
-📚 **Learn more:** [Claude Code Sub-Agents Documentation](https://docs.anthropic.com/en/docs/claude-code/sub-agents)
+- **TAM**: $100M-200M (chargeback management software market)
+- **Reference**: Disputifier at $36M ARR (3,000 merchants × $1,000/month avg)
+- **Disruption**: Post-breach opportunity + prevention-first approach
+- **Target**: $1.5M-2M MRR by Month 12
 
-### Example Usage
-- "Create a new app for tracking meditation habits" → `rapid-prototyper`
-- "What's trending on TikTok that we could build?" → `trend-researcher`
-- "Our app reviews are dropping, what's wrong?" → `feedback-synthesizer`
-- "Make this loading screen more fun" → `whimsy-injector`
+## 🏗️ Architecture
 
-## 📁 Directory Structure
+### Tech Stack
 
-Agents are organized by department for easy discovery:
+**Frontend**:
+- Remix v2 (React SSR at edge)
+- Shopify Polaris + Tailwind CSS
+- Vite for builds
+
+**Backend**:
+- Cloudflare Workers (V8 isolates, sub-50ms latency)
+- Cloudflare D1 (SQLite, globally replicated)
+- Cloudflare KV (sessions, cache)
+- Cloudflare Durable Objects (webhook queue)
+
+**Integrations**:
+- Shopify GraphQL Admin API
+- Stripe API v2023-10
+- PayPal Customer Disputes API
+- OpenAI GPT-4 API
+
+### Project Structure
 
 ```
-agents/
-├── design/
-│   ├── brand-guardian.md
-│   ├── ui-designer.md
-│   ├── ux-researcher.md
-│   ├── visual-storyteller.md
-│   └── whimsy-injector.md
-├── engineering/
-│   ├── ai-engineer.md
-│   ├── backend-architect.md
-│   ├── devops-automator.md
-│   ├── frontend-developer.md
-│   ├── mobile-app-builder.md
-│   ├── rapid-prototyper.md
-│   └── test-writer-fixer.md
-├── marketing/
-│   ├── app-store-optimizer.md
-│   ├── content-creator.md
-│   ├── growth-hacker.md
-│   ├── instagram-curator.md
-│   ├── reddit-community-builder.md
-│   ├── tiktok-strategist.md
-│   └── twitter-engager.md
-├── product/
-│   ├── feedback-synthesizer.md
-│   ├── sprint-prioritizer.md
-│   └── trend-researcher.md
-├── project-management/
-│   ├── experiment-tracker.md
-│   ├── project-shipper.md
-│   └── studio-producer.md
-├── studio-operations/
-│   ├── analytics-reporter.md
-│   ├── finance-tracker.md
-│   ├── infrastructure-maintainer.md
-│   ├── legal-compliance-checker.md
-│   └── support-responder.md
-├── testing/
-│   ├── api-tester.md
-│   ├── performance-benchmarker.md
-│   ├── test-results-analyzer.md
-│   ├── tool-evaluator.md
-│   └── workflow-optimizer.md
-└── bonus/
-    ├── joker.md
-    └── studio-coach.md
+redispute/
+├── apps/
+│   ├── admin/              # Merchant dashboard (Remix)
+│   └── customer-portal/    # Customer dispute resolution (Day 3)
+├── workers/
+│   ├── api/               # Main API worker (Hono)
+│   ├── webhooks/          # Event processing
+│   ├── email-parser/      # Klarna email parser (UNIQUE!)
+│   └── scheduled/         # Cron jobs (analytics, emails)
+├── packages/
+│   ├── database/          # D1 schema, migrations, seed data
+│   ├── shared/            # Types, utils, constants
+│   └── shopify/           # Shopify API wrapper
+├── scripts/
+│   ├── setup-cloudflare.sh    # Create Cloudflare resources
+│   ├── update-wrangler-config.sh  # Update configuration
+│   └── deploy.sh              # Deploy everything
+├── knowledge/
+│   ├── MVP-Implementation-Plan.md      # 20K word implementation guide
+│   └── PreventFlow-MVP-Sprint.md       # Obsidian Kanban (217 tasks)
+├── DEPLOYMENT.md          # Complete deployment guide
+├── package.json           # Root monorepo config
+├── pnpm-workspace.yaml    # PNPM workspace definition
+└── turbo.json            # Turborepo build pipeline
 ```
 
-## 📋 Complete Agent List
+## 🚀 Quick Start (Deployment)
 
-### Engineering Department (`engineering/`)
-- **ai-engineer** - Integrate AI/ML features that actually ship
-- **backend-architect** - Design scalable APIs and server systems
-- **devops-automator** - Deploy continuously without breaking things
-- **frontend-developer** - Build blazing-fast user interfaces
-- **mobile-app-builder** - Create native iOS/Android experiences
-- **rapid-prototyper** - Build MVPs in days, not weeks
-- **test-writer-fixer** - Write tests that catch real bugs
+See **[DEPLOYMENT.md](./DEPLOYMENT.md)** for the complete step-by-step deployment guide.
 
-### Product Department (`product/`)
-- **feedback-synthesizer** - Transform complaints into features
-- **sprint-prioritizer** - Ship maximum value in 6 days
-- **trend-researcher** - Identify viral opportunities
+### TL;DR
 
-### Marketing Department (`marketing/`)
-- **app-store-optimizer** - Dominate app store search results
-- **content-creator** - Generate content across all platforms
-- **growth-hacker** - Find and exploit viral growth loops
-- **instagram-curator** - Master the visual content game
-- **reddit-community-builder** - Win Reddit without being banned
-- **tiktok-strategist** - Create shareable marketing moments
-- **twitter-engager** - Ride trends to viral engagement
+```bash
+# 1. Authenticate with Cloudflare
+wrangler login
 
-### Design Department (`design/`)
-- **brand-guardian** - Keep visual identity consistent everywhere
-- **ui-designer** - Design interfaces developers can actually build
-- **ux-researcher** - Turn user insights into product improvements
-- **visual-storyteller** - Create visuals that convert and share
-- **whimsy-injector** - Add delight to every interaction
+# 2. Create all Cloudflare resources
+./scripts/setup-cloudflare.sh
 
-### Project Management (`project-management/`)
-- **experiment-tracker** - Data-driven feature validation
-- **project-shipper** - Launch products that don't crash
-- **studio-producer** - Keep teams shipping, not meeting
+# 3. Update configuration files
+./scripts/update-wrangler-config.sh
 
-### Studio Operations (`studio-operations/`)
-- **analytics-reporter** - Turn data into actionable insights
-- **finance-tracker** - Keep the studio profitable
-- **infrastructure-maintainer** - Scale without breaking the bank
-- **legal-compliance-checker** - Stay legal while moving fast
-- **support-responder** - Turn angry users into advocates
+# 4. Set secrets (Shopify, Stripe, OpenAI)
+cd workers/api
+wrangler secret put SHOPIFY_CLIENT_ID
+wrangler secret put SHOPIFY_CLIENT_SECRET
+wrangler secret put STRIPE_SECRET_KEY
+wrangler secret put OPENAI_API_KEY
 
-### Testing & Benchmarking (`testing/`)
-- **api-tester** - Ensure APIs work under pressure
-- **performance-benchmarker** - Make everything faster
-- **test-results-analyzer** - Find patterns in test failures
-- **tool-evaluator** - Choose tools that actually help
-- **workflow-optimizer** - Eliminate workflow bottlenecks
+# 5. Deploy everything
+cd ../..
+./scripts/deploy.sh
+```
 
-## 🎁 Bonus Agents
-- **studio-coach** - Rally the AI troops to excellence
-- **joker** - Lighten the mood with tech humor
+## 📅 Development Roadmap
 
-## 🎯 Proactive Agents
+### ✅ Day 1: Foundation & Auth (COMPLETED - Jan 13, 2026)
+- [x] Monorepo setup (PNPM + Turborepo)
+- [x] TypeScript, ESLint, Prettier
+- [x] 4 Cloudflare Workers (API, webhooks, email-parser, scheduled)
+- [x] D1 database with 8 tables
+- [x] Remix admin app with Shopify OAuth
+- [x] Polaris dashboard (dispute rate, stats, welcome)
+- [x] Deployment scripts and documentation
 
-Some agents trigger automatically in specific contexts:
-- **studio-coach** - When complex multi-agent tasks begin or agents need guidance
-- **test-writer-fixer** - After implementing features, fixing bugs, or modifying code
-- **whimsy-injector** - After UI/UX changes
-- **experiment-tracker** - When feature flags are added
+### ⏳ Day 2: Multi-Processor Integration
+- [ ] Shopify Payments integration
+- [ ] Stripe integration with webhooks
+- [ ] PayPal integration
+- [ ] Klarna email parser implementation
+- [ ] Webhook infrastructure (Durable Objects queue)
 
-## 💡 Best Practices
+### ⏳ Day 3: Prevention Layer
+- [ ] Risk scoring engine (rules-based MVP)
+- [ ] Automated prevention triggers
+- [ ] Customer dispute portal (mobile-optimized)
+- [ ] Merchant approval queue
 
-1. **Let agents work together** - Many tasks benefit from multiple agents
-2. **Be specific** - Clear task descriptions help agents perform better
-3. **Trust the expertise** - Agents are designed for their specific domains
-4. **Iterate quickly** - Agents support the 6-day sprint philosophy
+### ⏳ Day 4: AI Evidence Generation
+- [ ] Evidence collection engine
+- [ ] OpenAI integration (GPT-4)
+- [ ] Evidence quality scoring
+- [ ] Evidence review UI
 
-## 🔧 Technical Details
+### ⏳ Day 5: Analytics & Billing
+- [ ] Analytics dashboard with charts
+- [ ] Shopify Billing API integration
+- [ ] Email notifications (alerts, digests)
+- [ ] Usage tracking and invoicing
 
-### Agent Structure
-Each agent includes:
-- **name**: Unique identifier
-- **description**: When to use the agent with examples
-- **model**: AI model selection (opus, sonnet, haiku, or inherit)
-- **color**: Visual identification (red, blue, green, yellow, purple, orange, pink, cyan)
-- **tools**: Specific tools the agent can access
-- **permissionMode**: Permission handling (default, acceptEdits, bypassPermissions, plan, ignore)
-- **System prompt**: Detailed expertise and instructions
+### ⏳ Day 6: Polish, Security & Launch
+- [ ] Security audit (HMAC, CSRF, encryption)
+- [ ] Performance optimization (Lighthouse >95)
+- [ ] Testing (unit, integration, E2E)
+- [ ] Shopify App Store submission
+- [ ] "Built for Shopify" badge application
 
-### Adding New Agents
-1. Create a new `.md` file in the appropriate department folder
-2. Follow the existing format with YAML frontmatter
-3. Include 3-4 detailed usage examples
-4. Write comprehensive system prompt (500+ words)
-5. Test the agent with real tasks
+## 🛠️ Development Commands
 
-## 📊 Agent Performance
+```bash
+# Root commands
+pnpm run dev          # Start all workspaces in dev mode
+pnpm run build        # Build all workspaces
+pnpm run lint         # Lint all workspaces
+pnpm run type-check   # Type check all workspaces
 
-Track agent effectiveness through:
-- Task completion time
-- User satisfaction
-- Error rates
-- Feature adoption
-- Development velocity
+# Admin app
+cd apps/admin
+pnpm run dev          # Start Remix dev server
+pnpm run build        # Build for production
 
-## 🚦 Status
+# API worker
+cd workers/api
+wrangler dev          # Start local dev server
+wrangler deploy       # Deploy to Cloudflare
+wrangler tail         # View live logs
 
-- ✅ **Active**: Fully functional and tested
-- 🚧 **Coming Soon**: In development
-- 🧪 **Beta**: Testing with limited functionality
+# Database
+wrangler d1 execute redispute-dev --command="SELECT * FROM merchants"
+```
 
-## 🛠️ Customizing Agents for Your Studio
+## 📊 Database Schema
 
-### Agent Customization Todo List
+8 core tables:
 
-Use this checklist when creating or modifying agents for your specific needs:
+1. **merchants** - Shopify accounts and subscription status
+2. **orders** - Order data with risk scores
+3. **customer_disputes** - Prevention layer (customer portal)
+4. **chargebacks** - Disputes from all 4 processors
+5. **evidence_packages** - AI-generated evidence
+6. **analytics_events** - Tracking and metrics
+7. **webhook_log** - Debugging
+8. **billing_records** - Subscription and usage fees
 
-#### 📋 Required Components
-- [ ] **YAML Frontmatter**
-  - [ ] `name`: Unique agent identifier (kebab-case)
-  - [ ] `description`: When to use + 3-4 detailed examples with context/commentary
-  - [ ] `model`: AI model (opus for complex reasoning, sonnet for balanced, haiku for fast/simple)
-  - [ ] `color`: Visual identification (red, blue, green, yellow, purple, orange, pink, cyan)
-  - [ ] `tools`: Specific tools the agent can access (Write, Read, Edit, Bash, Grep, Glob, etc.)
-  - [ ] `permissionMode`: Permission handling (default, acceptEdits, bypassPermissions, plan, ignore)
+See [packages/database/schema.sql](./packages/database/schema.sql) for full schema.
 
-#### 📝 System Prompt Requirements (500+ words)
-- [ ] **Agent Identity**: Clear role definition and expertise area
-- [ ] **Core Responsibilities**: 5-8 specific primary duties
-- [ ] **Domain Expertise**: Technical skills and knowledge areas
-- [ ] **Studio Integration**: How agent fits into 6-day sprint workflow
-- [ ] **Best Practices**: Specific methodologies and approaches
-- [ ] **Constraints**: What the agent should/shouldn't do
-- [ ] **Success Metrics**: How to measure agent effectiveness
+## 🎯 Pricing Strategy
 
-#### 🎯 Required Examples by Agent Type
+| Tier | Price | Features |
+|------|-------|----------|
+| **Free** | $0 | 5 disputes/month, basic tools |
+| **Growth** | $299/mo | Unlimited disputes, AI evidence |
+| **Scale** | $699/mo | Multi-store, priority support |
+| **Enterprise** | $1,999/mo | Custom SLAs, dedicated support |
 
-**Engineering Agents** need examples for:
-- [ ] Feature implementation requests
-- [ ] Bug fixing scenarios
-- [ ] Code refactoring tasks
-- [ ] Architecture decisions
+**Plus**: 12% success fee on prevented/won disputes
 
-**Design Agents** need examples for:
-- [ ] New UI component creation
-- [ ] Design system work
-- [ ] User experience problems
-- [ ] Visual identity tasks
+## 📈 Success Metrics
 
-**Marketing Agents** need examples for:
-- [ ] Campaign creation requests
-- [ ] Platform-specific content needs
-- [ ] Growth opportunity identification
-- [ ] Brand positioning tasks
+### MVP Goals (Week 1)
+- ✅ App deployed to Cloudflare
+- ✅ Shopify OAuth working
+- ⏳ 10 beta merchants onboarded
 
-**Product Agents** need examples for:
-- [ ] Feature prioritization decisions
-- [ ] User feedback analysis
-- [ ] Market research requests
-- [ ] Strategic planning needs
+### Month 3 Goals
+- $100K MRR (80-120 paying merchants)
+- 4.7+ App Store rating
+- "Built for Shopify" badge
 
-**Operations Agents** need examples for:
-- [ ] Process optimization
-- [ ] Tool evaluation
-- [ ] Resource management
-- [ ] Performance analysis
+### Month 12 Goals
+- $1.5M-2M MRR (1,200-1,500 merchants)
+- Top 3 player in market
+- Series A ready
 
-#### ✅ Testing & Validation Checklist
-- [ ] **Trigger Testing**: Agent activates correctly for intended use cases
-- [ ] **Tool Access**: Agent can use all specified tools properly
-- [ ] **Output Quality**: Responses are helpful and actionable
-- [ ] **Edge Cases**: Agent handles unexpected or complex scenarios
-- [ ] **Integration**: Works well with other agents in multi-agent workflows
-- [ ] **Performance**: Completes tasks within reasonable timeframes
-- [ ] **Documentation**: Examples accurately reflect real usage patterns
+## 📚 Documentation
 
-#### 🔧 Agent File Structure Template
+- **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Complete deployment guide ⭐
+- [MVP-Implementation-Plan.md](./knowledge/MVP-Implementation-Plan.md) - Detailed implementation plan (20K words)
+- [PreventFlow-MVP-Sprint.md](./knowledge/PreventFlow-MVP-Sprint.md) - Kanban board (217 tasks)
+- [packages/database/README.md](./packages/database/README.md) - Database documentation
+- [apps/admin/README.md](./apps/admin/README.md) - Admin app documentation
 
-```markdown
----
-name: your-agent-name
-description: Use this agent when [scenario]. This agent specializes in [expertise]. Examples:\n\n<example>\nContext: [situation]\nuser: "[user request]"\nassistant: "[response approach]"\n<commentary>\n[why this example matters]\n</commentary>\n</example>\n\n[3 more examples...]
-model: sonnet
-color: blue
-tools: Write, Read, Edit, Bash, Grep, Glob
-permissionMode: default
+## 📄 License
+
+Proprietary - All rights reserved
+
 ---
 
-You are a [role] who [primary function]. Your expertise spans [domains]. You understand that in 6-day sprints, [sprint constraint], so you [approach].
+**Built with**: Remix, Cloudflare Workers, Shopify Polaris, OpenAI GPT-4
 
-Your primary responsibilities:
-1. [Responsibility 1]
-2. [Responsibility 2]
-...
+**Status**: 🎉 Day 1 Complete (6-Day Sprint)
 
-[Detailed system prompt content...]
+**Next**: Day 2 - Multi-Processor Integration
 
-Your goal is to [ultimate objective]. You [key behavior traits]. Remember: [key philosophy for 6-day sprints].
-```
+---
 
-#### 📂 Department-Specific Guidelines
-
-**Engineering** (`engineering/`): Focus on implementation speed, code quality, testing
-**Design** (`design/`): Emphasize user experience, visual consistency, rapid iteration  
-**Marketing** (`marketing/`): Target viral potential, platform expertise, growth metrics
-**Product** (`product/`): Prioritize user value, data-driven decisions, market fit
-**Operations** (`studio-operations/`): Optimize processes, reduce friction, scale systems
-**Testing** (`testing/`): Ensure quality, find bottlenecks, validate performance
-**Project Management** (`project-management/`): Coordinate teams, ship on time, manage scope
-
-#### 🎨 Customizations
-
-Modify these elements for your needs:
-- [ ] Adjust examples to reflect your product types
-- [ ] Add specific tools agents have access to
-- [ ] Modify success metrics for your KPIs
-- [ ] Update department structure if needed
-- [ ] Customize agent colors for your brand
-
-## 🤝 Contributing
-
-To improve existing agents or suggest new ones:
-1. Use the customization checklist above
-2. Test thoroughly with real projects
-3. Document performance improvements
-4. Share successful patterns with the community
+*PreventFlow - Keep your dispute rate under 0.5%. Never get held.*

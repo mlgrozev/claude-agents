@@ -1,0 +1,38 @@
+{
+  "name": "@redispute/admin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Redispute admin dashboard (Remix + Shopify Polaris)",
+  "type": "module",
+  "scripts": {
+    "dev": "remix vite:dev",
+    "build": "remix vite:build",
+    "start": "wrangler pages dev ./build/client",
+    "deploy": "npm run build && wrangler pages deploy ./build/client",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint app --ext .ts,.tsx"
+  },
+  "dependencies": {
+    "@remix-run/cloudflare": "^2.5.0",
+    "@remix-run/cloudflare-pages": "^2.5.0",
+    "@remix-run/react": "^2.5.0",
+    "@shopify/app-bridge": "^3.7.11",
+    "@shopify/app-bridge-react": "^3.7.11",
+    "@shopify/polaris": "^12.0.0",
+    "@shopify/shopify-api": "^9.0.2",
+    "@redispute/shared": "workspace:*",
+    "@redispute/shopify": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "recharts": "^2.12.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240117.0",
+    "@remix-run/dev": "^2.5.0",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11",
+    "wrangler": "^3.22.1"
+  }
+}

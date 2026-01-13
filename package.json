@@ -1,0 +1,39 @@
+{
+  "name": "redispute",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PreventFlow - Payment Hold Prevention & Chargeback Management Platform",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mlgrozev/redispute.git"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "setup": "pnpm install && pnpm run db:push",
+    "db:push": "cd packages/database && wrangler d1 execute redispute-dev --file=schema.sql",
+    "deploy": "./scripts/deploy.sh"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.2.4",
+    "turbo": "^1.11.3",
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "pnpm@8.15.0",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}

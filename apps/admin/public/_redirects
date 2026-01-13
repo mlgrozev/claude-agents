@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects
+
+# SPA fallback (handled by Remix)
+/*    /index.html   200

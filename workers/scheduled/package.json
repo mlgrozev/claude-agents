@@ -1,0 +1,23 @@
+{
+  "name": "@redispute/scheduled-worker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Scheduled tasks worker for Redispute (Cloudflare Workers Cron)",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@redispute/shared": "workspace:*",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240117.0",
+    "@types/node": "^20.11.5",
+    "typescript": "^5.3.3",
+    "wrangler": "^3.22.1"
+  }
+}

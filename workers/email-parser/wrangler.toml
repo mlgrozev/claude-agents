@@ -1,0 +1,30 @@
+name = "redispute-email-parser"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[env.dev]
+name = "redispute-email-parser-dev"
+
+[env.production]
+name = "redispute-email-parser"
+
+# Email routing configuration
+[[email_routing.rules]]
+action = "forward"
+enabled = true
+matchers = [{ type = "literal", field = "to", value = "disputes@redispute.com" }]
+
+# D1 Database bindings
+[[d1_databases]]
+binding = "DB"
+database_name = "redispute-dev"
+database_id = "8597f5f4-029f-430f-9049-8a7c6a509477"
+
+# Environment variables
+[vars]
+ENVIRONMENT = "development"
+FORWARDING_EMAIL = "disputes@redispute.com"
+
+# Secrets (use: wrangler secret put <NAME>)
+# - OPENAI_API_KEY (for NLP fallback)

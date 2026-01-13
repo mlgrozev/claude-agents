@@ -1,0 +1,41 @@
+name = "redispute-scheduled"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[env.dev]
+name = "redispute-scheduled-dev"
+
+[env.production]
+name = "redispute-scheduled"
+
+# Cron triggers
+[triggers]
+crons = [
+  # Calculate dispute rates every 5 minutes
+  "*/5 * * * *",
+  # Daily summary emails at 9 AM UTC
+  "0 9 * * *",
+  # Weekly reports on Mondays at 10 AM UTC
+  "0 10 * * 1",
+  # Monthly billing cycle at midnight on 1st of month
+  "0 0 1 * *"
+]
+
+# D1 Database bindings
+[[d1_databases]]
+binding = "DB"
+database_name = "redispute-dev"
+database_id = "8597f5f4-029f-430f-9049-8a7c6a509477"
+
+# KV namespace bindings
+[[kv_namespaces]]
+binding = "CACHE"
+id = ""
+
+# Environment variables
+[vars]
+ENVIRONMENT = "development"
+
+# Secrets (use: wrangler secret put <NAME>)
+# - RESEND_API_KEY (for email notifications)
